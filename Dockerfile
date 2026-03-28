@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY target/*.jar app.jar
 
-COPY src/main/resources/service-account.json service-account.json
+# COPY src/main/resources/service-account.json service-account.json
 
 EXPOSE 8080
 
