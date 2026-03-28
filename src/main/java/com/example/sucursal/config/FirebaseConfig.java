@@ -19,12 +19,8 @@ public class FirebaseConfig {
         if (FirebaseApp.getApps().isEmpty()) {
 
             String path = System.getenv("FIREBASE_CONFIG_PATH");
-            if (path == null) {
-                if (new File("service-account.json").exists()) {
-                    path = "service-account.json";
-                } else {
-                    path = "src/main/resources/service-account.json";
-                }
+            if (path == null || path.isEmpty()) {
+                path = "service-account.json";
             }
 
             try (FileInputStream serviceAccount = new FileInputStream(path)) {
