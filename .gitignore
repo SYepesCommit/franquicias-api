@@ -33,4 +33,4 @@ build/
 .vscode/
 
 # Firebase Credentials
-src/main/resources/service-account.json
+service-account.json

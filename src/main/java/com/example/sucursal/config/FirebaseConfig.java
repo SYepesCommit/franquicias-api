@@ -18,7 +18,7 @@ public class FirebaseConfig {
         if (FirebaseApp.getApps().isEmpty()) {
             
             String path = System.getenv("FIREBASE_CONFIG_PATH");
-            if (path == null) path = "src/main/resources/service-account.json";
+            if (path == null) path = "/app/service-account.json";
 
             try (FileInputStream serviceAccount = new FileInputStream(path)) {
                 FirebaseOptions options = FirebaseOptions.builder()

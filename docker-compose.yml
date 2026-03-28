@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  franquicias-app:
+    build: .
+    container_name: sucursal-api-container
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./service-account.json:/app/service-account.json
+    environment:
+      - FIREBASE_CONFIG_PATH=/app/service-account.json
+      - SPRING_AUTOCONFIGURE_EXCLUDE=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+    restart: always
