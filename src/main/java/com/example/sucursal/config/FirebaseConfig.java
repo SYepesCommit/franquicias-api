@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import java.io.IOException;
 import java.io.FileInputStream;
+import java.io.File;
 
 @Configuration
 public class FirebaseConfig {
@@ -16,9 +17,15 @@ public class FirebaseConfig {
     @Bean
     public Firestore getFirestore() throws IOException {
         if (FirebaseApp.getApps().isEmpty()) {
-            
+
             String path = System.getenv("FIREBASE_CONFIG_PATH");
-            if (path == null) path = "/app/service-account.json";
+            if (path == null) {
+                if (new File("service-account.json").exists()) {
+                    path = "service-account.json";
+                } else {
+                    path = "src/main/resources/service-account.json";
+                }
+            }
 
             try (FileInputStream serviceAccount = new FileInputStream(path)) {
                 FirebaseOptions options = FirebaseOptions.builder()
